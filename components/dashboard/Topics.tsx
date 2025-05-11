@@ -41,7 +41,7 @@ const TopTopics: React.FC = () => {
 
   if (error) {
     return (
-      <Card title="Popular Topics" className="col-span-12">
+      <Card title="Popular Topics" className="col-span-12 lg:col-span-8">
         <div className="p-4 text-center text-red-500">{error}</div>
       </Card>
     );
