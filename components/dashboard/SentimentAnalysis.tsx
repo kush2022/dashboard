@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../ui/Card";
 import axios from "axios";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, TooltipItem } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 // Register ChartJS components
@@ -12,6 +12,25 @@ interface SentimentItem {
   sentiment: "POSITIVE" | "NEGATIVE" | "NEUTRAL";
   confidence: number;
   explanation: string;
+}
+
+// Define a type for the tooltip context
+interface DoughnutTooltipContext {
+  chart: ChartJS;
+  tooltip: {
+    dataPoints: Array<{
+      label: string;
+      raw: number;
+      formattedValue: string;
+    }>;
+  };
+  dataIndex: number;
+  dataset: {
+    data: number[];
+  };
+  label: string;
+  raw: number;
+  formattedValue: string;
 }
 
 const SentimentAnalysis: React.FC = () => {
@@ -35,17 +54,6 @@ const SentimentAnalysis: React.FC = () => {
 
     fetchSentimentData();
   }, []);
-
-  // Calculate sentiment metrics
-  const totalPositive = sentimentData.filter(item => item.sentiment === "POSITIVE").length;
-  const totalNegative = sentimentData.filter(item => item.sentiment === "NEGATIVE").length;
-  const totalNeutral = sentimentData.filter(item => item.sentiment === "NEUTRAL").length;
-  const total = sentimentData.length;
-
-  // Calculate percentages
-  const positivePercentage = total > 0 ? Math.round((totalPositive / total) * 100) : 0;
-  const neutralPercentage = total > 0 ? Math.round((totalNeutral / total) * 100) : 0;
-  const negativePercentage = total > 0 ? Math.round((totalNegative / total) * 100) : 0;
 
   // Get confidence values for each sentiment type
   const positiveConfidence = sentimentData.find(item => item.sentiment === "POSITIVE")?.confidence || 0;
@@ -84,7 +92,7 @@ const SentimentAnalysis: React.FC = () => {
       },
       tooltip: {
         callbacks: {
-          label: function(context: any) {
+          label: function(context: TooltipItem<'doughnut'>) {
             const label = context.label || '';
             const value = context.raw || 0;
             return `${label}: ${value}% confidence`;
@@ -178,33 +186,6 @@ const SentimentAnalysis: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Recent sentiment explanations */}
-        {/* <div className="mt-4">
-          <h3 className="text-sm font-medium mb-2">Sentiment Analysis Details</h3>
-          <div className="space-y-2 max-h-60 overflow-y-auto">
-            {sentimentData.map((item, index) => (
-              <div 
-                key={index} 
-                className={`p-2 rounded-md text-sm ${
-                  item.sentiment === "POSITIVE" 
-                    ? "bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500" 
-                    : item.sentiment === "NEGATIVE"
-                    ? "bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500"
-                    : "bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400"
-                }`}
-              >
-                <div className="flex justify-between">
-                  <p className="font-medium">{item.sentiment}</p>
-                  <p className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full">
-                    {item.confidence}% confidence
-                  </p>
-                </div>
-                <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">{item.explanation}</p>
-              </div>
-            ))}
-          </div>
-        </div> */}
       </div>
     </Card>
   );

@@ -4,6 +4,8 @@ import {
   MessageSquare, 
   HelpCircle,
   LogOut,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -75,13 +77,13 @@ const Sidebar: React.FC<SidebarProps> = ({ darkMode, toggleDarkMode }) => {
         
         <div className="p-4 border-t border-emerald-100/20 dark:border-emerald-800/20">
           <div className="flex items-center justify-between mb-4">
-            {/* <button 
+            <button 
               onClick={toggleDarkMode}
               className="flex items-center justify-center p-2 rounded-lg bg-emerald-100/30 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100/50 dark:hover:bg-emerald-900/50 transition-all"
             >
               {darkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-             */}
+            
             <button className="flex items-center text-sm text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300">
               <LogOut size={18} className="mr-1.5" />
               <span>Logout</span>

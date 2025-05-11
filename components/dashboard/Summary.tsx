@@ -37,7 +37,7 @@ const Summary: React.FC = () => {
         title="Total Conversations"
         value={isLoading ? 'Loading...' : totalConversations.toLocaleString()}
         icon={<Users size={24} />}
-        change={5.2}
+        // change={5.2}
         // isLoading={isLoading}
       />
 
@@ -45,7 +45,7 @@ const Summary: React.FC = () => {
         title="Avg. Response Time"
         value={`${summaryMetrics.averageResponseTime}s`}
         icon={<Clock size={24} />}
-        change={-12.4}
+        // change={-12.4}
       />
 
       {/* <MetricCard 

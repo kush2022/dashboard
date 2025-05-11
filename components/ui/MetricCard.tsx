@@ -1,15 +1,15 @@
 import React from 'react';
-import { ArrowUpIcon, ArrowDownIcon } from 'lucide-react';
+// import { ArrowUpIcon, ArrowDownIcon } from 'lucide-react';
 
 interface MetricCardProps {
   title: string;
   value: string | number;
   icon: React.ReactNode;
-  change?: number;
+  // change?: number;
   className?: string;
 }
 
-const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon, change, className = '' }) => {
+const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon, className = '' }) => {
   return (
     <div className={`relative backdrop-blur-md bg-white/10 dark:bg-emerald-950/20 rounded-xl border border-emerald-100/20 dark:border-emerald-500/10 shadow-lg ${className}`}>
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/5 dark:from-emerald-900/10 to-transparent pointer-events-none" />
