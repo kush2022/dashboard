@@ -18,7 +18,7 @@ const TopTopics: React.FC = () => {
     const fetchTopics = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:8000/chatbot/topics');
+        const response = await axios.get('https://rafikeybot.onrender.com/chatbot/topics');
         setTopics(response.data);
       } catch (err) {
         console.error('Error fetching topics:', err);

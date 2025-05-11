@@ -15,23 +15,23 @@ interface SentimentItem {
 }
 
 // Define a type for the tooltip context
-interface DoughnutTooltipContext {
-  chart: ChartJS;
-  tooltip: {
-    dataPoints: Array<{
-      label: string;
-      raw: number;
-      formattedValue: string;
-    }>;
-  };
-  dataIndex: number;
-  dataset: {
-    data: number[];
-  };
-  label: string;
-  raw: number;
-  formattedValue: string;
-}
+// interface DoughnutTooltipContext {
+//   chart: ChartJS;
+//   tooltip: {
+//     dataPoints: Array<{
+//       label: string;
+//       raw: number;
+//       formattedValue: string;
+//     }>;
+//   };
+//   dataIndex: number;
+//   dataset: {
+//     data: number[];
+//   };
+//   label: string;
+//   raw: number;
+//   formattedValue: string;
+// }
 
 const SentimentAnalysis: React.FC = () => {
   const [sentimentData, setSentimentData] = useState<SentimentItem[]>([]);
